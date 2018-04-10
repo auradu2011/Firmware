@@ -136,7 +136,7 @@ BAROSIM::BAROSIM(const char *path) :
 	VirtDevObj("BAROSIM", path, BARO_BASE_DEVICE_PATH, BAROSIM_MEASURE_INTERVAL_US),
 	_reports(nullptr),
 	report{},
-	_msl_pressure(101325),
+	_msl_pressure(CONSTANTS_STD_PRESSURE_PA),
 	_baro_topic(nullptr),
 	_orb_class_instance(-1),
 	_sample_perf(perf_alloc(PC_ELAPSED, "barosim_read")),

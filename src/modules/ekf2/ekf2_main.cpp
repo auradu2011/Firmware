@@ -555,7 +555,7 @@ void Ekf2::run()
 	vehicle_status_s vehicle_status = {};
 	sensor_selection_s sensor_selection = {};
 	sensor_baro_s sensor_baro = {};
-	sensor_baro.pressure = 1013.5f; // initialise pressure to sea level
+	sensor_baro.pressure = CONSTANTS_STD_PRESSURE_MBAR; // initialise pressure to sea level
 	landing_target_pose_s landing_target_pose = {};
 
 	while (!should_exit()) {

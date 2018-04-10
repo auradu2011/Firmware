@@ -156,9 +156,6 @@ int DfMS5607Wrapper::_publish(struct baro_sensor_data &data)
 
 	// TODO: verify this, it's just copied from the MS5611 driver.
 
-	// Constant for now
-	const double MSL_PRESSURE_KPA = 101325.0 / 1000.0;
-
 	/* tropospheric properties (0-11km) for standard atmosphere */
 	const double T1 = 15.0 + 273.15;	/* temperature at base height in Kelvin */
 	const double a  = -6.5 / 1000;	/* temperature gradient in degrees per metre */
@@ -166,7 +163,7 @@ int DfMS5607Wrapper::_publish(struct baro_sensor_data &data)
 	const double R  = 287.05;	/* ideal gas constant in J/kg/K */
 
 	/* current pressure at MSL in kPa */
-	double p1 = MSL_PRESSURE_KPA;
+	double p1 = CONSTANTS_STD_PRESSURE_KPA;
 
 	/* measured pressure in kPa */
 	double p = static_cast<double>(data.pressure_pa) / 1000.0;

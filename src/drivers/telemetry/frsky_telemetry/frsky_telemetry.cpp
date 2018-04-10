@@ -79,8 +79,8 @@ static int sPort_open_uart(const char *uart_name, struct termios *uart_config, s
 static int set_uart_speed(int uart, struct termios *uart_config, speed_t speed);
 static void usage(void);
 static int frsky_telemetry_thread_main(int argc, char *argv[]);
-__EXPORT int frsky_telemetry_main(int argc, char *argv[]);
 
+extern "C" __EXPORT int frsky_telemetry_main(int argc, char *argv[]);
 
 uint16_t get_telemetry_flight_mode(int px4_flight_mode)
 {
@@ -319,11 +319,7 @@ static int frsky_telemetry_thread_main(int argc, char *argv[])
 
 		PX4_INFO("sending FrSky SmartPort telemetry");
 
-		struct sensor_baro_s *sensor_baro = malloc(sizeof(struct sensor_baro_s));
-
-		if (sensor_baro == NULL) {
-			err(1, "could not allocate memory");
-		}
+		sensor_baro_s sensor_baro = {};
 
 		float filtered_alt = NAN;
 		float last_baro_alt = 0.f;
@@ -372,13 +368,13 @@ static int frsky_telemetry_thread_main(int argc, char *argv[])
 			orb_check(sensor_sub, &sensor_updated);
 
 			if (sensor_updated) {
-				orb_copy(ORB_ID(sensor_baro), sensor_sub, sensor_baro);
+				orb_copy(ORB_ID(sensor_baro), sensor_sub, &sensor_baro);
 
 				if (isnan(filtered_alt)) {
-					filtered_alt = sensor_baro->altitude;
+					filtered_alt = sensor_baro.altitude;
 
 				} else {
-					filtered_alt = .05f * sensor_baro->altitude + .95f * filtered_alt;
+					filtered_alt = .05f * sensor_baro.altitude + .95f * filtered_alt;
 				}
 			}
 
@@ -546,7 +542,6 @@ static int frsky_telemetry_thread_main(int argc, char *argv[])
 
 		PX4_DEBUG("freeing sPort memory");
 		sPort_deinit();
-		free(sensor_baro);
 
 		/* either no traffic on the port (0=>timeout), or D type packet */
 
