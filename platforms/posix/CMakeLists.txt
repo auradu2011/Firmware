@@ -3,7 +3,7 @@ add_subdirectory(src)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-get_property(module_libraries GLOBAL PROPERTY PX4_LIBRARIES)
+get_property(module_libraries GLOBAL PROPERTY PX4_MODULE_LIBRARIES)
 
 px4_posix_generate_builtin_commands(
 	OUT apps

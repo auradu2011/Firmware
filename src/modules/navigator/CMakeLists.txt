@@ -54,6 +54,5 @@ px4_add_module(
 		gpsfailure.cpp
 		follow_target.cpp
 	DEPENDS
-		platforms__common
+		modules__dataman
 	)
-# vim: set noet ft=cmake fenc=utf-8 ff=unix :

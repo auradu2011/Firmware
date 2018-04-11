@@ -37,10 +37,7 @@ set(config_module_list
 	#
 	# Board support modules
 	#
-
 	drivers/stm32
-	drivers/led
-	drivers/boards
 
 	#
 	# System commands
@@ -49,15 +46,4 @@ set(config_module_list
 	systemcmds/top
 	systemcmds/config
 	systemcmds/ver
-
-	#
-	# General system control
-	#
-
-	#
-	# Library modules
-	#
-	modules/systemlib/param
-	modules/systemlib
-	lib/version
 )

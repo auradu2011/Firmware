@@ -52,7 +52,7 @@
 #include <px4_config.h>
 #include <px4_tasks.h>
 #include <systemlib/err.h>
-#include <systemlib/param/param.h>
+#include <parameters/param.h>
 #include <systemlib/perf_counter.h>
 #include <systemlib/pid/pid.h>
 #include <systemlib/systemlib.h>

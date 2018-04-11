@@ -10,7 +10,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-missing-prototypes")
 
-get_property(module_libraries GLOBAL PROPERTY PX4_LIBRARIES)
+get_property(module_libraries GLOBAL PROPERTY PX4_MODULE_LIBRARIES)
 
 px4_qurt_generate_builtin_commands(
 	OUT ${PX4_BINARY_DIR}/apps

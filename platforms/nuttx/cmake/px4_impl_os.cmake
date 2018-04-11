@@ -188,11 +188,11 @@ function(px4_os_add_flags)
 		${PX4_BINARY_DIR}/NuttX/apps/include
 		)
 
-	#set(added_exe_linker_flags)
-	#set(added_link_dirs ${nuttx_export_dir}/libs)
-	set(added_definitions -D__PX4_NUTTX)
+	add_definitions(
+		-D__PX4_NUTTX
+		-D__DF_NUTTX
+		)
 
-	list(APPEND added_definitions -D__DF_NUTTX)
 
 	if("${config_nuttx_hw_stack_check_${BOARD}}" STREQUAL "y")
 		set(instrument_flags
@@ -240,7 +240,9 @@ function(px4_os_prebuild_targets)
 			REQUIRED OUT BOARD
 			ARGN ${ARGN})
 
-	add_custom_target(${OUT} DEPENDS nuttx_context uorb_headers)
+	add_library(${OUT} INTERFACE)
+	target_link_libraries(${OUT} INTERFACE nuttx_c nuttx_cxx nuttx_fs nuttx_mm)
+	add_dependencies(${OUT} DEPENDS nuttx_context uorb_headers)
 
 	# parse nuttx config options for cmake
 	file(STRINGS ${PX4_SOURCE_DIR}/platforms/nuttx/nuttx-configs/${BOARD}/nsh/defconfig ConfigContents)

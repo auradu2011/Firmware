@@ -13,9 +13,7 @@ else()
 endif()
 
 set(config_module_list
-	drivers/device
 
-	modules/uORB
 
 	lib/DriverFramework/framework
 

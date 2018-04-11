@@ -82,7 +82,7 @@
 #include <systemlib/hardfault_log.h>
 
 #include <systemlib/systemlib.h>
-#include <systemlib/param/param.h>
+#include <parameters/param.h>
 
 #include "up_internal.h"
 /****************************************************************************

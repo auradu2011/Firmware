@@ -42,7 +42,7 @@ endif()
 add_executable(${FW_NAME} ${PX4_SOURCE_DIR}/src/platforms/empty.c)
 add_dependencies(${FW_NAME} git_nuttx nuttx_build)
 
-get_property(module_libraries GLOBAL PROPERTY PX4_LIBRARIES)
+get_property(module_libraries GLOBAL PROPERTY PX4_MODULE_LIBRARIES)
 
 # build NuttX
 add_subdirectory(NuttX ${PX4_BINARY_DIR}/NuttX)
@@ -60,6 +60,10 @@ list(APPEND nuttx_libs
 	nuttx_fs
 	nuttx_mm
 	nuttx_sched
+
+	drivers__arch # TODO: move to platform layer
+	boards_common # TODO: move to platform layer
+	board_arch # TODO: move to platform layer
 	)
 
 if (CONFIG_NET)
@@ -77,6 +81,10 @@ file(RELATIVE_PATH PX4_BINARY_DIR_REL ${CMAKE_CURRENT_BINARY_DIR} ${PX4_BINARY_D
 CYGPATH(PX4_BINARY_DIR PX4_BINARY_DIR_CYG)
 
 target_link_libraries(${FW_NAME}
+	nuttx_cxx
+)
+
+target_link_libraries(${FW_NAME}
 
 	-Wl,--script=${PX4_BINARY_DIR_CYG}/NuttX/nuttx/configs/${BOARD}/scripts/${LD_SCRIPT}
 	-Wl,-Map=${CONFIG}.map
@@ -89,6 +97,7 @@ target_link_libraries(${FW_NAME}
 
 	m
 	gcc
+
 	)
 
 if (config_romfs_root)

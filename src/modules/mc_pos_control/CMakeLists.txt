@@ -40,6 +40,6 @@ px4_add_module(
 		PositionControl.cpp
 		Utility/ControlMath.cpp
 	DEPENDS
-		platforms__common
+		controllib
+		flight_tasks
 	)
-# vim: set noet ft=cmake fenc=utf-8 ff=unix :

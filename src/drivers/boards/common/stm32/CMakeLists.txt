@@ -43,5 +43,5 @@ if (NOT ${LABEL} STREQUAL "bootloader")
 		)
 endif()
 
-px4_add_library(board_stm32 ${SRCS})
-add_dependencies(board_stm32 nuttx_build)
+px4_add_library(board_arch ${SRCS})
+add_dependencies(board_arch nuttx_build)

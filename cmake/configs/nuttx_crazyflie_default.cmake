@@ -5,11 +5,8 @@ set(config_module_list
 	#
 	# Board support modules
 	#
-	drivers/device
 	drivers/stm32
-	drivers/led
 	drivers/px4fmu
-	drivers/boards
 	drivers/imu/mpu9250
 	drivers/barometer/lps25h
 	drivers/gps
@@ -67,28 +64,6 @@ set(config_module_list
 	# Logging
 	#
 	modules/logger
-
-	#
-	# Library modules
-	#
-	modules/systemlib/param
-	modules/systemlib
-	modules/uORB
-	modules/dataman
-
-	#
-	# Libraries
-	#
-	lib/controllib
-	lib/conversion
-	lib/DriverFramework/framework
-	lib/ecl
-	lib/mathlib
-	lib/mixer
-	lib/rc
-	lib/terrain_estimation
-	lib/version
-	lib/FlightTasks
 
 	#
 	# OBC challenge
